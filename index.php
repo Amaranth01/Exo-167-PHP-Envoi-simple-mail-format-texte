@@ -6,11 +6,12 @@
  * 3. Déployez sur votre serveur et testez !
  */
 
-$from = '';
-$to = '';
-$message = 'Hello World, sending a simple mail !';
+$from = 'vanessa.nectoux@gmail.com';
+$to = 'vanou01@gmail.com';
+//$message = 'Hello World, sending a simple mail !';
 // TODO Votre code ici.
 
+//mail($to, $from, $message);
 
 /**
  * 4. Commentez le code précédent, mais gardez les variables $from et $to
@@ -24,3 +25,17 @@ $message = 'Hello World, sending a simple mail !';
  *     N'écrasez pas les valeurs déjà existantes ( s'il y en a ).
  */
 // TODO Votre code ici.
+
+$message = "Coucou ceci est un message un peu trop long pour un simple mail, quoi que c'est pas certain si t'es pas sur gmail ça passe ! Bisous";
+$message = wordwrap($message, 70, "\r\n");
+
+mail($to, $message, $from);
+
+if (mail($to, $message, $from)) {
+    echo "le message est parti";
+}
+else {
+    echo "Une erreur est survenue lors de l'envoi du mail";
+}
+
+file_put_contents('mails.txt', $message);
